@@ -1,7 +1,7 @@
 import { CheckoutHeader } from './CheckoutHeader'
 import './CheckoutPage.css'
 
-export function CheckoutPage({ cart }) {
+export function CheckoutPage() {
     return (
         <>
             <title>Checkout</title>
