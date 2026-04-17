@@ -1,5 +1,11 @@
-export function NotFoundPage(){
+import { Header } from "../components/Header"
+
+export function NotFoundPage({ cart }) {
     return (
-        <p>Error 404: Not Found</p>
+        <>
+            <Header cart={cart} />
+            <p>Error 404: Not Found</p>
+        </>
+
     );
 }
