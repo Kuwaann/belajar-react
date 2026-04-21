@@ -1,10 +1,29 @@
 import axios from 'axios';
 import { formatMoney } from "../../utils/money"
+import { useState } from 'react';
 
 export function CartItemDetails({ cartItem, loadCart }) {
+    const [isBeingUpdated, setIsBeingUpdated] = useState(false);
+    const [quantity, setQuantity] = useState(cartItem.quantity);
+
     const deleteCartItem = async () => {
         await axios.delete(`/api/cart-items/${cartItem.productId}`);
         await loadCart();
+    }
+
+    const updateQuantity = async () => {
+
+
+        if (isBeingUpdated) {
+            await axios.put(`http://localhost:3000/api/cart-items/${cartItem.productId}`, {
+                quantity
+            })
+            setIsBeingUpdated(false);
+            await loadCart();
+        }
+        else {
+            setIsBeingUpdated(true);
+        }
     }
 
     return (
@@ -21,9 +40,27 @@ export function CartItemDetails({ cartItem, loadCart }) {
                 </div>
                 <div className="product-quantity">
                     <span>
-                        Quantity: <span className="quantity-label">{cartItem.quantity}</span>
+                        Quantity: <input type="text"
+                            className="quantity-textbox"
+                            style={{ opacity: isBeingUpdated ? 1 : 0 }}
+                            value={quantity}
+                            onChange={(event) => {
+                                setQuantity(Number(event.target.value));
+                            }}
+                            onKeyDown={(event) => {
+                                if (event.key === 'Enter') {
+                                    updateQuantity();
+                                }
+                                else if (event.key === 'Escape') {
+                                    setQuantity(cartItem.quantity);
+                                    setIsBeingUpdated(false);
+                                }
+                            }}
+                        /><span className="quantity-label">{cartItem.quantity}</span>
                     </span>
-                    <span className="update-quantity-link link-primary">
+                    <span className="update-quantity-link link-primary"
+                        onClick={updateQuantity}
+                    >
                         Update
                     </span>
                     <span className="delete-quantity-link link-primary" onClick={deleteCartItem}>
