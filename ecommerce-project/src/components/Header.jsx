@@ -10,9 +10,10 @@ export function Header({ cart }) {
     const [searchParams] = useSearchParams();
     const searchText = searchParams.get('search');
     const [search, setSearch] = useState(searchText || '');
-    const navigate = useNavigate();
-    let totalQuantity = 0;
 
+    const navigate = useNavigate();
+
+    let totalQuantity = 0;
     cart.forEach((cartItem) => {
         totalQuantity += cartItem.quantity;
     })

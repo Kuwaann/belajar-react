@@ -8,6 +8,7 @@ import './HomePage.css';
 export function HomePage({ cart, loadCart }) {
     const [searchParams] = useSearchParams();
     const search = searchParams.get('search');
+
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
