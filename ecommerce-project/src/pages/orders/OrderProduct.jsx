@@ -15,21 +15,21 @@ export function OrderProduct({ order, orderProduct, loadCart }) {
 
     return <Fragment>
         <div className="product-image-container">
-            <img src={orderProduct.product.image} />
+            <img src={orderProduct.product.image} data-testid="product-image" />
         </div>
 
         <div className="product-details">
             <div className="product-name">
                 {orderProduct.product.name}
             </div>
-            <div className="product-delivery-date">
+            <div className="product-delivery-date" data-testid="product-delivery-date">
                 Arriving on: {dayjs(orderProduct.estimatedDeliveryTimeMs).format('MMMM D')}
             </div>
             <div className="product-quantity">
                 Quantity: {orderProduct.quantity}
             </div>
-            <button className="buy-again-button button-primary" onClick={addToCart}>
-                <img className="buy-again-icon" src={BuyAgain} />
+            <button className="buy-again-button button-primary" onClick={addToCart} data-testid="buy-again-button">
+                <img className="buy-again-icon" src={BuyAgain} data-testid="buy-again-icon" />
                 <span className="buy-again-message">Add to Cart</span>
             </button>
         </div>

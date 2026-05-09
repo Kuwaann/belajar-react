@@ -7,7 +7,7 @@ export function OrderSummary({ cart, deliveryOptions, loadCart }) {
         <div className="order-summary">
             {deliveryOptions.length > 0 && cart.map((cartItem) => {
                 return (
-                    <div className="cart-item-container" key={cartItem.productId}>
+                    <div className="cart-item-container" key={cartItem.productId} data-testid="cart-item-container">
                         <DeliveryDate deliveryOptions={deliveryOptions} cartItem={cartItem} />
 
                         <div className="cart-item-details-grid">

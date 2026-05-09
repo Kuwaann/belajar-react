@@ -12,8 +12,6 @@ export function CartItemDetails({ cartItem, loadCart }) {
     }
 
     const updateQuantity = async () => {
-
-
         if (isBeingUpdated) {
             await axios.put(`http://localhost:3000/api/cart-items/${cartItem.productId}`, {
                 quantity
@@ -29,16 +27,16 @@ export function CartItemDetails({ cartItem, loadCart }) {
     return (
         <>
             <img className="product-image"
-                src={cartItem.product.image} />
+                src={cartItem.product.image} data-testid="product-image" />
 
             <div className="cart-item-details">
-                <div className="product-name">
+                <div className="product-name" data-testid="product-name">
                     {cartItem.product.name}
                 </div>
-                <div className="product-price">
+                <div className="product-price" data-testid="product-price">
                     {formatMoney(cartItem.product.priceCents)}
                 </div>
-                <div className="product-quantity">
+                <div className="product-quantity" data-testid="product-quantity">
                     <span>
                         Quantity: <input type="text"
                             className="quantity-textbox"
@@ -56,14 +54,15 @@ export function CartItemDetails({ cartItem, loadCart }) {
                                     setIsBeingUpdated(false);
                                 }
                             }}
+                            data-testid="quantity-textbox"
                         /><span className="quantity-label">{cartItem.quantity}</span>
                     </span>
                     <span className="update-quantity-link link-primary"
-                        onClick={updateQuantity}
+                        onClick={updateQuantity} data-testid="update-quantity-button"
                     >
                         Update
                     </span>
-                    <span className="delete-quantity-link link-primary" onClick={deleteCartItem}>
+                    <span className="delete-quantity-link link-primary" onClick={deleteCartItem} data-testid="delete-cart-button">
                         Delete
                     </span>
                 </div>

@@ -16,18 +16,18 @@ export function CheckoutHeader({ cart }) {
             <div className="header-content">
                 <div className="checkout-header-left-section">
                     <NavLink to="/">
-                        <img className="logo" src={Logo} />
-                        <img className="mobile-logo" src={MobileLogo} />
+                        <img className="logo" src={Logo} data-testid="logo" />
+                        <img className="mobile-logo" src={MobileLogo} data-testid="mobile-logo" />
                     </NavLink>
                 </div>
 
                 <div className="checkout-header-middle-section">
                     Checkout (<NavLink className="return-to-home-link"
-                        to="/">{totalQuantity} items</NavLink>)
+                        to="/" data-testid="total-quantity">{totalQuantity} items</NavLink>)
                 </div>
 
                 <div className="checkout-header-right-section">
-                    <img src={CheckoutLockIcon} />
+                    <img src={CheckoutLockIcon} data-testid="checkout-lock-icon" />
                 </div>
             </div>
         </div>
